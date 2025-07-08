@@ -17,8 +17,7 @@
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/logo.png" alt="logo" class="header__logo">
-        />
+        <img src="./images/logo.png" alt="logo" class="header__logo" />
       </header>
       <main class="content">
         <section class="profile">
@@ -28,10 +27,8 @@
             class="profile__avatar"
           />
           <div class="profile__container">
-          <h2 class="profile__name">
-            Jacques Cousteau
-          </h2>
-          <h3 class="profile__profession">Explorer</h3>
+            <h2 class="profile__name">Jacques Cousteau</h2>
+            <h3 class="profile__profession">Explorer</h3>
           </div>
           <button type="button" class="profile__edit-button">
             <img
@@ -50,102 +47,89 @@
         </section>
         <section class="form">
           <div class="form__overlay"></div>
-          <div class="form__container ">
-            <button type="button" class="form__close"><img src="./images/close.png" alt="close icon"></button>
+          <div class="form__container">
+            <button type="button" class="form__close">
+              <img src="./images/close.png" alt="close icon" />
+            </button>
             <form class="form__group">
               <h2 class="form__title">Edit profile</h2>
-              <input type="text" id="name" placeholder="Name" class="form__placeholder">
-              <input type="text" id="profession" placeholder="About me" class="form__placeholder">
+              <input
+                type="text"
+                id="name"
+                placeholder="Name"
+                class="form__placeholder"
+              />
+              <input
+                type="text"
+                id="profession"
+                placeholder="About me"
+                class="form__placeholder"
+              />
               <button type="submit" class="form__submit">Save</button>
             </form>
           </div>
-
         </section>
-        <section class="elements">
-          <div class="elements__content">
-            <img
-              src="./images/jairo.jpg"
-              alt="View with the sunset from afar and nature"
-              class="elements__content-image"
-            />
-            <div class="elements__content-block">
-              <p class="elements__content-description">
-              Point Reyes
-                <button type="button" class="elements__content-like"></button>
-
-            </div>
+        <section class="popup">
+          <div class="popup__overlay"></div>
+          <div class="popup__container">
+            <button type="button" class="popup__close">
+              <img src="./images/close.png" alt="close icon" />
+            </button>
+            <img src="" alt="Imagen" class="popup__image" />
+            <h3 class="popup__message"></h3>
           </div>
-          <div class="elements__content">
-            <img
-              src="./images/novoa.jpg"
-              alt="View with the sunset from afar and nature"
-              class="elements__content-image"
-            />
-            <div class="elements__content-block">
-              <p class="elements__content-description">
-              New York
-                <button type="button" class="elements__content-like"></button>
-              </p>
-            </div>
+        </section>
+        <section class="formadd">
+          <div class="formadd__overlay"></div>
+          <div class="formadd__container">
+            <button type="button" class="formadd__close">
+              <img src="./images/close.png" alt="close icon" />
+            </button>
+            <form class="formadd__group">
+              <h2 class="formadd__title">New place</h2>
+              <input
+                type="text"
+                id="inputTitle"
+                placeholder="Title"
+                class="formadd__placeholder"
+              />
+              <input
+                type="url"
+                id="inputUrl"
+                placeholder="Image URL"
+                class="formadd__placeholder"
+              />
+              <button type="submit" class="formadd__submit">Save</button>
+            </form>
           </div>
-          <div class="elements__content">
-            <img
-              src="./images/paul.jpg"
-              alt="View with the sunset from afar and nature"
-              class="elements__content-image"
-            />
-            <div class="elements__content-block">
-              <p class="elements__content-description">
-                Massachusetts
-                <button type="button" class="elements__content-like"></button>
-              </p>
-            </div>
-          </div>
-          <div class="elements__content">
-            <img
-              src="./images/yeon.jpg"
-              alt="View with the sunset from afar and nature"
-              class="elements__content-image"
-            />
-            <div class="elements__content-block">
-              <p class="elements__content-description">
-                Mountains of DV
-                <button type="button" class="elements__content-like"></button>
-              </p>
-            </div>
-          </div>
-          <div class="elements__content">
-            <img
-              src="./images/zoshua.jpg"
-              alt="View with the sunset from afar and nature"
-              class="elements__content-image"
-            />
-            <div class="elements__content-block">
-              <p class="elements__content-description">
-                National Park
-                <button type="button" class="elements__content-like"></button>
-              </p>
-            </div>
-          </div>
-          <div class="elements__content">
-            <img
-              src="./images/zion.jpg"
-              alt="View with the sunset from afar and nature"
-              class="elements__content-image"
-            />
-            <div class="elements__content-block">
-              <p class="elements__content-description">
-                Springdale
-                <button type="button" class="elements__content-like"></button>
-              </p>
-            </div>
-          </div>
+        </section>
+        <section class="cards">
+          <div class="cards__list"></div>
         </section>
       </main>
       <footer class="footer">
         <p>2025 Around the US by Juan Pablo</p>
       </footer>
     </div>
+    <template class="template-card">
+      <div class="cards__content">
+        <img
+          src="./images/jairo.jpg"
+          alt="View with the sunset from afar and nature"
+          class="cards__content-image"
+        />
+        <button type="button" class="cards__content-trash"></button>
+        <div class="cards__content-block">
+          <h2 class="cards__content-description">Point Reyes</h2>
+          <button
+            aria-label="Like-button"
+            type="button"
+            class="cards__content-like"
+          ></button>
+        </div>
+      </div>
+    </template>
+
     <script src="./scripts/index.js"></script>
   </body>
 </html>
