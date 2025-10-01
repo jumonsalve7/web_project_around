@@ -73,8 +73,24 @@
   margin-top: 15px;
 }
 
-.form__submit:hover {
+.form__submit:not(:disabled):hover {
   opacity: 0.5;
+}
+
+.form__submit:disabled {
+  background-color: white;
+  cursor: default;
+  color: gray;
+}
+
+.form__input-error {
+  display: none;
+}
+
+.form__input-error_active {
+  display: inline;
+  color: red;
+  font-size: 12px;
 }
 
 @media screen and (max-width: 535px) {

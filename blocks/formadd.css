@@ -56,11 +56,11 @@
   opacity: 0.5;
 }
 
-.formadd__placeholder {
+/* .formadd__placeholder {
   border: none;
   border-bottom: 1px solid rgb(223, 223, 223);
   line-height: 25px;
-}
+} */
 
 .formadd__submit {
   cursor: pointer;

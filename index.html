@@ -51,20 +51,28 @@
             <button type="button" class="form__close">
               <img src="./images/close.png" alt="close icon" />
             </button>
-            <form class="form__group">
+            <form class="form__group" novalidate>
               <h2 class="form__title">Edit profile</h2>
               <input
                 type="text"
                 id="name"
                 placeholder="Name"
                 class="form__placeholder"
+                minlength="2"
+                maxlength="40"
+                required
               />
+              <span class="form__input-error name-error"></span>
               <input
                 type="text"
                 id="profession"
                 placeholder="About me"
                 class="form__placeholder"
+                minlength="10"
+                maxlength="200"
+                required
               />
+              <span class="form__input-error profession-error"></span>
               <button type="submit" class="form__submit">Save</button>
             </form>
           </div>
@@ -85,21 +93,29 @@
             <button type="button" class="formadd__close">
               <img src="./images/close.png" alt="close icon" />
             </button>
-            <form class="formadd__group">
+            <form class="formadd__group" novalidate>
               <h2 class="formadd__title">New place</h2>
               <input
                 type="text"
                 id="inputTitle"
                 placeholder="Title"
-                class="formadd__placeholder"
+                class="form__placeholder"
+                minlength="2"
+                maxlength="30"
+                required
               />
+              <span class="form__input-error inputTitle-error"></span>
               <input
                 type="url"
                 id="inputUrl"
                 placeholder="Image URL"
-                class="formadd__placeholder"
+                class="form__placeholder"
+                required
               />
-              <button type="submit" class="formadd__submit">Save</button>
+              <span class="form__input-error inputUrl-error"
+                >Please enter a URL.
+              </span>
+              <button type="submit" class="form__submit">Save</button>
             </form>
           </div>
         </section>
