@@ -1,48 +1,58 @@
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
+import { initialCards } from "./utils.js";
 
-const popupImgElement = document.querySelector(".popup__image");
-const popupMessage = document.querySelector(".popup__message");
-
-const templateCard = document.querySelector(".template-card");
 const cardsList = document.querySelector(".cards__list");
-const modalOverlay = document.querySelector(".form__overlay")
 
-const initialCards = [
-  {
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
-  },
-  {
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-  },
-  {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
-  },
-];
-
-const renderCard = (name, link, cardsList) => {
-    const cardElement = new Card(name, link).createCard();
-    cardsList.prepend(cardElement);
-}
-
-initialCards.forEach((item) => {
-  renderCard(item.name, item.link, cardsList);
+const userInfo = new UserInfo({
+  name: ".profile__name",
+  profession: ".profile__profession",
 });
 
-new FormValidator().enableValidation();
+const popupImage = new PopupWithImage(".popup");
+popupImage.setEventListeners();
+popupImage.openPopUp();
 
+const popupWithForm = new PopupWithForm(".form");
+popupWithForm.setEventListeners();
+
+document
+  .querySelector(".profile__edit-button")
+  .addEventListener("click", () => popupWithForm.openPopUp());
+
+const popupAddPlace = new PopupWithForm(".formadd");
+popupAddPlace.setEventListeners();
+
+document
+  .querySelector(".profile__add-button")
+  .addEventListener("click", () => popupAddPlace.openPopUp());
+
+const section = new Section(
+  initialCards,
+
+  (item) => {
+    const card = new Card(item.name, item.link, () =>
+      popupImage.openPopUp(item.name, item.link)
+    );
+    const element = card.createCard();
+
+    cardsList.appendChild(element);
+  }
+);
+
+section.renderItems();
+
+const renderCard = (name, link, cardsList) => {
+  const cardElement = new Card(name, link).createCard();
+  cardsList.prepend(cardElement);
+};
+
+// initialCards.forEach((item) => {
+//   renderCard(item.name, item.link, cardsList);
+// });
+
+new FormValidator().enableValidation();

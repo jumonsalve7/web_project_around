@@ -1,10 +1,11 @@
- import { openPopup , closeOnEscape } from "./utils.js";
+  // import { openPopup , closeOnEscape } from "../scripts/utils.js";
 
 export class Card{
-  constructor(name,link){
+  constructor(name,link,openPopup){
     this.name = name;
     this.link = link;
     this.template = document.querySelector(".template-card").content.querySelector(".cards__content");
+    this.openPopup = openPopup;
   };
 
 getCloneElement(){
@@ -48,7 +49,7 @@ setEventListeners(deleteButton, cardLikeButton, cardImage){
 
 showPopup(){
   const popupImage = document.querySelector(".popup");
-  openPopup(popupImage)
+  this.openPopup(popupImage)
   document.querySelector(".popup__image").src = this.link;
   document.querySelector(".popup__image").alt = this.name;
   document.querySelector(".popup__message").textContent = this.name;
@@ -63,7 +64,7 @@ toggleShowPopup(){
 
 clickImg(){
   this.cardImage.addEventListener("click", () =>{
-    this.toggleShowPopup
+    this.toggleShowPopup()
   })
 };
 
