@@ -21,11 +21,19 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img
-            src="./images/image.jpg"
-            alt="profile picture of user"
-            class="profile__avatar"
-          />
+          <div class="profile__edit-photo">
+            <img
+              src=""
+              alt="profile picture of user"
+              class="profile__avatar"
+            />
+            <img
+              src="./images/pencil.png"
+              alt="profile picture of user"
+              class="profile__edit-pencil"
+            />
+          </div>
+
           <div class="profile__container">
             <h2 class="profile__name"></h2>
             <h3 class="profile__profession"></h3>
@@ -122,6 +130,29 @@
               <button type="submit" class="form__submit">Save</button>
             </form>
           </div>
+        </section>
+        <section class="photo">
+          <div class="photo__overlay"></div>
+          <div class="photo__container">
+            <button type="button" class="photo__close">
+              <img src="./images/close.png" alt="close icon" />
+            </button>
+          <form class="photo__group" novalidate>
+              <h2 class="photo__title">New photo</h2>
+              <span class="form__input-error inputTitle-error"></span>
+              <input
+                type="url"
+                id="inputUrl"
+                name="url"
+                placeholder="Image URL"
+                class="form__placeholder"
+                required
+              />
+              <span class="form__input-error inputUrl-error"
+                >Please enter a URL.
+              </span>
+              <button type="submit" class="form__submit">Save</button>
+            </form>
         </section>
         <section class="cards">
           <div class="cards__list"></div>

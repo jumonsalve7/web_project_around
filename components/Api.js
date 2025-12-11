@@ -32,21 +32,18 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  editProfile() {
+  editProfile({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: {
-        authorization: "c8f05b69-ed4c-4182-b70c-4bb6582f92c4",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
-        name: name,
-        profession: profession,
+        name,
+        about,
       }),
     }).then(this._checkResponse);
   }
 
-  editPhoto() {
+  editPhoto(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
@@ -60,7 +57,6 @@ class Api {
   }
 
   createCard({ name, link }) {
-    console.log(name,link)
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
@@ -72,7 +68,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${card._id}/likes`, {
       method: "PUT",
       headers: this._headers,
-      body: JSON.stringify(card)
+      body: JSON.stringify(card),
     }).then(this._checkResponse);
   }
 
@@ -82,8 +78,6 @@ class Api {
       headers: this._headers,
     }).then(this._checkResponse);
   }
-
-  // otros métodos para trabajar con la API
 }
 
 export const api = new Api({

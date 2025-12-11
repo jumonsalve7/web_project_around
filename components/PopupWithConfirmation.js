@@ -3,24 +3,26 @@ import Popup from "./Popup.js";
 export default class PopupWithConfirmation extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this._setTrashListeners();
   }
   open() {
-    this.openPopUp();
+    super.openPopUp();
   }
 
   close() {
-    this.closePopUp();
+    super.closePopUp();
   }
 
-  _setTrashListeners() {
+  setEventListeners() {
+    super.setEventListeners();
     const deleteButtons = document.querySelectorAll(".cards__content-trash");
-
     deleteButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
-        this.openPopUp();
+        this.open();
       });
     });
+    const closeButton = this._popup.querySelector(".delete__card-button");
+    closeButton.addEventListener("click", () => {
+      this.closePopUp();
+    });
   }
-
 }

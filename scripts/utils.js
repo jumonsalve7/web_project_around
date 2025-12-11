@@ -1,6 +1,4 @@
-import { Card } from "../components/Card.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-
 const formEditName = document.querySelector(".form");
 const editButton = document.querySelector(".profile__edit-button");
 const addMenu = document.querySelector(".profile__add-button");

@@ -52,6 +52,23 @@
   margin-bottom: 20px;
 }
 
+.profile__edit-photo {
+  position: relative;
+}
+
+.profile__edit-pencil {
+  width: 50%;
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 120px;
+  left: 40px;
+}
+
+.profile__edit-pencil:hover {
+  opacity: 0.8;
+}
+
 .profile__add-button:hover {
   opacity: 0.5;
 }

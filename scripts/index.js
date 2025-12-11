@@ -6,20 +6,18 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import { api } from "../components/Api.js";
 import { profileName, profileProfession } from "./utils.js";
-// import PopupWithConfirmation from "./PopupWithConfirmation.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
+import Photo from "../components/Photo.js";
+
+const profileImage = document.querySelector(".profile__avatar");
 
 const cardsList = document.querySelector(".cards__list");
-
-const userInfo = new UserInfo({
-  name: ".profile__name",
-  profession: ".profile__profession",
-});
 
 export const popupImage = new PopupWithImage(".popup");
 popupImage.setEventListeners();
 
-const popupWithForm = new PopupWithForm(".form");
-popupWithForm.setEventListeners();
+// const popupWithForm = new PopupWithForm(".form");
+// popupWithForm.setEventListeners();
 
 document
   .querySelector(".profile__edit-button")
@@ -27,6 +25,22 @@ document
 
 const popupAddPlace = new PopupWithForm(".formadd");
 popupAddPlace.setEventListeners();
+
+const popupWithForm = new PopupWithForm(".form", (data) => {
+  return api.editProfile({ name: data.name, about: data.profession })
+    .then((res) => {
+      userInfo.setUserInfo({ name: res.name, profession: res.about });
+    });
+});
+
+popupWithForm.setEventListeners();
+
+document.querySelector(".profile__edit-button")
+  .addEventListener("click", () => popupWithForm.open());
+
+
+export const deleteTrashButton = new PopupWithConfirmation(".delete");
+deleteTrashButton.setEventListeners();
 
 document
   .querySelector(".profile__add-button")
@@ -39,10 +53,11 @@ api.getInitialCards().then((data) => {
     data,
 
     (item) => {
-      console.log(item)
-      const card = new Card(item, () =>
-        popupImage.openPopUp(item.name, item.link)
-    );
+      const card = new Card(
+        item,
+        () => popupImage.openPopUp(item.name, item.link),
+        () => deleteTrashButton.open()
+      );
       const element = card.createCard();
 
       cardsList.appendChild(element);
@@ -54,11 +69,14 @@ api.getInitialCards().then((data) => {
 api.getInitialData().then((data) => {
   profileName.textContent = data.name;
   profileProfession.textContent = data.about;
+  profileImage.src = data.avatar;
 });
 
+const photo = new Photo(".photo");
+const photoEditButton = document.querySelector(".profile__edit-pencil");
 
-// const deletePopup = new PopupWithConfirmation(".delete-popup");
-// deletePopup.setEventListeners();
+photoEditButton.addEventListener("click", () => {
+  photo.open();
+});
 
-
-
+photo.setEventListeners();

@@ -1,13 +1,15 @@
 import { api } from "./Api.js";
+import PopupWithConfirmation from "./PopupWithConfirmation.js";
 
 export class Card {
-  constructor(card, openPopup) {
+  constructor(card, openPopup, deletePopup) {
     this._name = card.name;
     this._link = card.link;
     this._template = document
       .querySelector(".template-card")
       .content.querySelector(".cards__content");
     this._openPopup = openPopup;
+    this._deletePopup = deletePopup;
     this._cardId = card._id;
     this._card = card;
   }
@@ -41,20 +43,29 @@ export class Card {
 
   setEventListeners(deleteButton, cardLikeButton, cardImage) {
     deleteButton.addEventListener("click", () => {
-      api.deleteCard(this._card._id).then(() => {
-        this.deleteCard();
+      this._deletePopup();
+      const trashButton = document.querySelector(".delete__card-button");
+      trashButton.addEventListener("click", () => {
+        api
+          .deleteCard(this._card._id)
+          .then(() => {
+            this.deleteCard();
+          })
+          .then(() => {
+            // falta poner para qeu se cierre el popup cuando se elimina
+          });
       });
     });
     cardLikeButton.addEventListener("click", () => {
       this.toggleCardLike(cardLikeButton);
       if (this._card.isLiked) {
-        api.deleteLikeCard(this._card._id).then(() =>{
-          this._card.isLiked = false
+        api.deleteLikeCard(this._card._id).then(() => {
+          this._card.isLiked = false;
         });
       } else {
-        const newCard = {...this._card, isLiked: true}
+        const newCard = { ...this._card, isLiked: true };
         api.addLikeCard(newCard).then(() => {
-          this._card.isLiked = true
+          this._card.isLiked = true;
         });
       }
     });
@@ -72,17 +83,5 @@ export class Card {
     document.querySelector(".popup__image").src = this._link;
     document.querySelector(".popup__image").alt = this._name;
     document.querySelector(".popup__message").textContent = this._name;
-  }
-
-  toggleShowPopup() {
-    popup.classList.add("form-active", "formadd-active", "popup-active");
-    activePopup = popup;
-    document.addEventListener("keydown", _handleEscClose);
-  }
-
-  clickImg() {
-    this.cardImage.addEventListener("click", () => {
-      this.toggleShowPopup();
-    });
   }
 }

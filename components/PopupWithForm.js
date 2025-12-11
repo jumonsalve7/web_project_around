@@ -2,11 +2,13 @@ import Popup from "./Popup.js";
 import { Card } from "./Card.js";
 import { api } from "./Api.js";
 import { popupImage } from "../scripts/index.js";
+import { deleteTrashButton } from "../scripts/index.js";
 
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector) {
+  constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._popupSelector = document.querySelector(popupSelector);
+    this._handleFormSubmit = handleFormSubmit;
   }
 
   open() {
@@ -38,20 +40,21 @@ export default class PopupWithForm extends Popup {
     this._popup.addEventListener("submit", (evt) => {
       evt.preventDefault();
       const inputValues = this._getInputValues();
-      console.log(inputValues);
       api
         .createCard({ name: inputValues.place, link: inputValues.url })
-        .then(() => {
+        .then((response) => {
           const cardsList = document.querySelector(".cards__list");
           const card = new Card(
             {
               name: inputValues.place,
               link: inputValues.url,
+              _id: response._id,
             },
             () => {
               popupImage.setEventListeners();
               popupImage.openPopUp(inputValues.place, inputValues.url);
-            }
+            },
+            () => deleteTrashButton.open()
           ).createCard();
           evt.preventDefault();
           cardsList.prepend(card);
@@ -59,6 +62,14 @@ export default class PopupWithForm extends Popup {
         .then(() => {
           this.closePopUp();
         });
+    });
+
+    this._popup.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+      const inputValues = this._getInputValues();
+      this._handleFormSubmit(inputValues)
+        .then(() => this.closePopUp())
+        .catch((err) => console.error(err));
     });
   }
 }

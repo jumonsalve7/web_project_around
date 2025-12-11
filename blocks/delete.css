@@ -2,12 +2,16 @@
   display: none;
   justify-content: center;
   font-family: "inter", sans-serif;
-  position: relative;
 }
 
-
-.delete-active{
+.delete-active {
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
+  position: absolute;
+  width: 400px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .delete__icon-close {
@@ -40,6 +44,15 @@
   border-radius: 10px;
 }
 
+.delete__close {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  position: absolute;
+  z-index: 20;
+  right: 0px;
+  top: -29px;
+}
 
 .delete__card-button {
   cursor: pointer;

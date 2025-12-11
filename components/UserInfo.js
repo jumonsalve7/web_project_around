@@ -1,4 +1,3 @@
-
 export default class UserInfo {
   constructor({ name, profession }) {
     this._nameElement = document.querySelector(name);
@@ -8,16 +7,15 @@ export default class UserInfo {
   getUserInfo() {
     return {
       name: this._nameElement.textContent,
-      job: this._profession.textContent,
+      profession: this._profession.textContent,
     };
   }
 
-  setUserInfo({ name, job }) {
+  setUserInfo({ name, profession }) {
     if (name) {
       this._nameElement.textContent = name;
-    }
-    if (job) {
-      this._profession.textContent = job;
+
+      if (profession) this._profession.textContent = profession;
     }
   }
 }

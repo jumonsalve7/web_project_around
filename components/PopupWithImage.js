@@ -19,4 +19,5 @@ export default class PopupWithImage extends Popup {
   closePopUp(){
     super.closePopUp();
   }
+  
 }
