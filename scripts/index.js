@@ -9,6 +9,8 @@ import { profileName, profileProfession } from "./utils.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import Photo from "../components/Photo.js";
 
+const userInfo = new UserInfo({ name:".profile__name", profession:".profile__profession" });
+
 const profileImage = document.querySelector(".profile__avatar");
 
 const cardsList = document.querySelector(".cards__list");
@@ -26,10 +28,13 @@ document
 const popupAddPlace = new PopupWithForm(".formadd");
 popupAddPlace.setEventListeners();
 
+
+
 const popupWithForm = new PopupWithForm(".form", (data) => {
-  return api.editProfile({ name: data.name, about: data.profession })
-    .then((res) => {
-      userInfo.setUserInfo({ name: res.name, profession: res.about });
+  console.log(data)
+  return api.editProfile({ name: data.profile, about: data.profession })
+    .then(() => {
+      userInfo.setUserInfo({ name: data.profile, profession: data.profession });
     });
 });
 

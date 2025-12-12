@@ -7,12 +7,12 @@ export const profileProfession = document.querySelector(".profile__profession");
 const inputName = document.querySelector("#name");
 const inputProfession = document.querySelector("#profession");
 
-formEditName.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  profileName.textContent = inputName.value;
-  profileProfession.textContent = inputProfession.value;
-  closePopup(formEditName);
-});
+// formEditName.addEventListener("submit", (evt) => {
+//   evt.preventDefault();
+//   profileName.textContent = inputName.value;
+//   profileProfession.textContent = inputProfession.value;
+//   closePopup(formEditName);
+// });
 
 editButton.addEventListener("click", () => PopupWithForm.open());
 addMenu.addEventListener("click", () => PopupWithForm.open());

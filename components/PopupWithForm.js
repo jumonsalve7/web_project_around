@@ -8,6 +8,7 @@ export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._popupSelector = document.querySelector(popupSelector);
+    this._className = popupSelector;
     this._handleFormSubmit = handleFormSubmit;
   }
 
@@ -36,7 +37,7 @@ export default class PopupWithForm extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-
+    if(this._className === ".formadd"){
     this._popup.addEventListener("submit", (evt) => {
       evt.preventDefault();
       const inputValues = this._getInputValues();
@@ -63,7 +64,7 @@ export default class PopupWithForm extends Popup {
           this.closePopUp();
         });
     });
-
+  } else {
     this._popup.addEventListener("submit", (evt) => {
       evt.preventDefault();
       const inputValues = this._getInputValues();
@@ -72,4 +73,5 @@ export default class PopupWithForm extends Popup {
         .catch((err) => console.error(err));
     });
   }
+}
 }
